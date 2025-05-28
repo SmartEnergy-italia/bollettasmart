@@ -1,19 +1,16 @@
-import { Container } from 'react-bootstrap';
-import Header from './components/Header';
-import Footer from './components/Footer';
-import BillAnalyzer from './components/BillAnalyzer';
-import './App.css';
+import './App.css'
+import Header from './components/Header.jsx'
+import Footer from './components/Footer.jsx'
+import BillAnalyzer from './components/BillAnalyzer.jsx'
 
 function App() {
   return (
-    <div className="d-flex flex-column min-vh-100">
+    <div className="App">
       <Header />
-      <Container className="flex-grow-1 mb-4">
-        <BillAnalyzer />
-      </Container>
+      <BillAnalyzer />
       <Footer />
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
