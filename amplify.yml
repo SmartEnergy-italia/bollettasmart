@@ -1,0 +1,21 @@
+version: 1
+frontend:
+  phases:
+    preBuild:
+      commands:
+        - npm ci
+    build:
+      commands:
+        - echo "Building static files for BollettaSmart"
+        - mkdir -p build
+        - cp -r public/* build/
+        - cp index.html build/
+        - cp come-funziona.html build/
+        - cp login.html build/
+  artifacts:
+    baseDirectory: build
+    files:
+      - '**/*'
+  cache:
+    paths:
+      - node_modules/**/*
