@@ -6,16 +6,19 @@ frontend:
         - npm ci
     build:
       commands:
-        - echo "Building static files for BollettaSmart"
-        - mkdir -p build
-        - cp -r public/* build/
-        - cp index.html build/
-        - cp come-funziona.html build/
-        - cp login.html build/
+        - echo "Preparing BollettaSmart static files"
   artifacts:
-    baseDirectory: build
+    baseDirectory: .
     files:
-      - '**/*'
+      - index.html
+      - come-funziona.html
+      - login.html
+      - public/**/*
+      - '!node_modules/**/*'
+      - '!server/**/*'
+      - '!shared/**/*'
+      - '!src/**/*'
+      - '!uploads/**/*'
   cache:
     paths:
       - node_modules/**/*
