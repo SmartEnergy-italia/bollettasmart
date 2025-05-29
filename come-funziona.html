@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Come Funziona - BollettaSmart | Analisi AI delle Bollette</title>
+    <meta name="description" content="Scopri come BollettaSmart analizza le tue bollette energetiche con intelligenza artificiale per farti risparmiare centinaia di euro all'anno.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/public/tailwind.css">
+    <style>
+        body { font-family: 'Outfit', sans-serif; }
+    </style>
+</head>
+<body class="bg-gradient-to-b from-gray-50 to-white text-slate-800">
+    <!-- Header con Navbar -->
+    <header class="relative z-10">
+        <nav class="container mx-auto px-4 py-6">
+            <div class="flex items-center justify-between">
+                <a href="/" class="flex items-center gap-2">
+                    <div class="w-8 h-8 bg-emerald-500 rounded-lg"></div>
+                    <span class="text-2xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-emerald-500 to-blue-500">BollettaSmart</span>
+                </a>
+                
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="/come-funziona" class="font-medium text-emerald-600">Come Funziona</a>
+                    <a href="#area-riservata" class="px-6 py-2.5 bg-gradient-to-r from-emerald-500 to-blue-500 text-white font-medium rounded-lg hover:shadow-lg transition-all">Area Riservata</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative pt-16 pb-20 overflow-hidden">
+        <div class="absolute inset-0 z-0 bg-gradient-to-br from-emerald-50 via-blue-50 to-white opacity-80"></div>
+        <div class="absolute -top-24 -right-24 w-96 h-96 bg-emerald-300 rounded-full mix-blend-multiply filter blur-3xl opacity-30"></div>
+        <div class="absolute -bottom-24 -left-24 w-96 h-96 bg-blue-300 rounded-full mix-blend-multiply filter blur-3xl opacity-30"></div>
+        
+        <div class="container mx-auto px-4 relative z-10 text-center">
+            <div class="max-w-4xl mx-auto">
+                <div class="inline-flex items-center px-4 py-2 bg-emerald-100 rounded-full text-emerald-700 text-sm font-medium mb-6">
+                    <span class="w-2 h-2 bg-emerald-500 rounded-full mr-2 animate-pulse"></span>
+                    Tecnologia AI Avanzata
+                </div>
+                
+                <h1 class="text-4xl md:text-5xl font-extrabold text-slate-900 mb-6">
+                    Come Funziona 
+                    <span class="bg-clip-text text-transparent bg-gradient-to-r from-emerald-500 to-blue-500">BollettaSmart</span>
+                </h1>
+                
+                <p class="text-xl text-slate-600 mb-8 leading-relaxed max-w-3xl mx-auto">
+                    Scopri come la nostra intelligenza artificiale analizza le tue bollette luce e gas
+                    e trova automaticamente le migliori offerte per farti risparmiare fino a €500 all'anno.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Steps Process -->
+    <section class="py-20">
+        <div class="container mx-auto px-4">
+            <div class="space-y-20">
+                
+                <!-- Step 1 -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <div class="flex items-center mb-6">
+                            <div class="w-12 h-12 bg-emerald-100 rounded-2xl flex items-center justify-center mr-4">
+                                <span class="text-emerald-600 text-xl font-bold">1</span>
+                            </div>
+                            <h2 class="text-3xl font-bold text-slate-800">Carica la Bolletta</h2>
+                        </div>
+                        
+                        <p class="text-lg text-slate-600 mb-6 leading-relaxed">
+                            Trascina o seleziona la tua ultima bolletta di luce o gas. 
+                            Supportiamo tutti i formati (PDF, JPG, PNG) e tutti i principali 
+                            fornitori energetici italiani come ENEL, ENI, A2A, Edison e molti altri.
+                        </p>
+                        
+                        <div class="space-y-3">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-5 h-5 bg-emerald-100 rounded-full flex items-center justify-center">
+                                    <span class="text-emerald-600 text-xs">✓</span>
+                                </div>
+                                <span class="text-slate-700">Tutti i formati supportati (PDF, JPG, PNG)</span>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <div class="w-5 h-5 bg-emerald-100 rounded-full flex items-center justify-center">
+                                    <span class="text-emerald-600 text-xs">✓</span>
+                                </div>
+                                <span class="text-slate-700">Compatibile con tutti i fornitori italiani</span>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <div class="w-5 h-5 bg-emerald-100 rounded-full flex items-center justify-center">
+                                    <span class="text-emerald-600 text-xs">✓</span>
+                                </div>
+                                <span class="text-slate-700">Dati crittografati e sicuri</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="relative">
+                        <div class="bg-white rounded-2xl p-8 shadow-xl border border-slate-100">
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="text-sm font-medium text-slate-500">Upload in corso...</span>
+                                <span class="text-emerald-600 text-sm font-bold">95%</span>
+                            </div>
+                            <div class="w-full bg-slate-200 rounded-full h-2 mb-6">
+                                <div class="bg-emerald-500 h-2 rounded-full transition-all" style="width: 95%"></div>
+                            </div>
+                            <div class="text-center">
+                                <div class="w-16 h-16 bg-emerald-100 rounded-2xl flex items-center justify-center mx-auto mb-3">
+                                    <span class="text-emerald-600 text-2xl">📄</span>
+                                </div>
+                                <p class="font-medium text-slate-800">bolletta_enel_marzo.pdf</p>
+                                <p class="text-sm text-slate-500">2.4 MB</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    <div class="order-2 lg:order-1 relative">
+                        <div class="bg-white rounded-2xl p-8 shadow-xl border border-slate-100">
+                            <h3 class="text-xl font-bold text-slate-800 mb-4">Analisi AI in Corso</h3>
+                            <div class="space-y-3">
+                                <div class="flex items-center justify-between">
+                                    <span class="text-sm text-slate-600">Estrazione dati cliente</span>
+                                    <span class="text-green-600 text-xs">✓</span>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <span class="text-sm text-slate-600">Analisi consumi</span>
+                                    <span class="text-green-600 text-xs">✓</span>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <span class="text-sm text-slate-600">Calcolo tariffe</span>
+                                    <span class="text-blue-600 text-xs">⏳</span>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <span class="text-sm text-slate-600">Confronto offerte</span>
+                                    <span class="text-slate-400 text-xs">⏱️</span>
+                                </div>
+                            </div>
+                            <div class="mt-4 p-3 bg-blue-50 rounded-lg">
+                                <p class="text-sm text-blue-700 font-medium">
+                                    38 parametri analizzati • 150+ offerte confrontate
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="order-1 lg:order-2">
+                        <div class="flex items-center mb-6">
+                            <div class="w-12 h-12 bg-blue-100 rounded-2xl flex items-center justify-center mr-4">
+                                <span class="text-blue-600 text-xl font-bold">2</span>
+                            </div>
+                            <h2 class="text-3xl font-bold text-slate-800">Analisi Intelligente</h2>
+                        </div>
+                        
+                        <p class="text-lg text-slate-600 mb-6 leading-relaxed">
+                            La nostra AI estrae automaticamente <strong>38 parametri specifici</strong> 
+                            dalla tua bolletta: dati cliente, consumi, tariffe, costi fissi e variabili. 
+                            Poi confronta tutte le offerte disponibili sul mercato energetico italiano.
+                        </p>
+                        
+                        <div class="bg-slate-50 rounded-2xl p-6">
+                            <h4 class="font-bold text-slate-800 mb-4">Parametri Analizzati:</h4>
+                            <div class="grid grid-cols-2 gap-3 text-sm text-slate-600">
+                                <div>• Dati Cliente (7 campi)</div>
+                                <div>• Identificativi Fornitura (7 campi)</div>
+                                <div>• Informazioni Fornitore (5 campi)</div>
+                                <div>• Consumi e Letture (8 campi)</div>
+                                <div>• Costi e Tariffe (6 campi)</div>
+                                <div>• Date e Periodi (4 campi)</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <div class="flex items-center mb-6">
+                            <div class="w-12 h-12 bg-purple-100 rounded-2xl flex items-center justify-center mr-4">
+                                <span class="text-purple-600 text-xl font-bold">3</span>
+                            </div>
+                            <h2 class="text-3xl font-bold text-slate-800">Risultati Personalizzati</h2>
+                        </div>
+                        
+                        <p class="text-lg text-slate-600 mb-6 leading-relaxed">
+                            Ricevi una classifica delle migliori offerte personalizzata 
+                            sui tuoi consumi reali. Ogni raccomandazione include il calcolo 
+                            esatto del risparmio annuale e i dettagli per cambiare fornitore.
+                        </p>
+                        
+                        <div class="space-y-3">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-5 h-5 bg-purple-100 rounded-full flex items-center justify-center">
+                                    <span class="text-purple-600 text-xs">✓</span>
+                                </div>
+                                <span class="text-slate-700">Classifica personalizzata delle offerte</span>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <div class="w-5 h-5 bg-purple-100 rounded-full flex items-center justify-center">
+                                    <span class="text-purple-600 text-xs">✓</span>
+                                </div>
+                                <span class="text-slate-700">Calcolo esatto del risparmio annuale</span>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <div class="w-5 h-5 bg-purple-100 rounded-full flex items-center justify-center">
+                                    <span class="text-purple-600 text-xs">✓</span>
+                                </div>
+                                <span class="text-slate-700">Guida per cambiare fornitore</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="relative">
+                        <div class="bg-white rounded-2xl p-8 shadow-xl border border-slate-100">
+                            <h3 class="text-xl font-bold text-slate-800 mb-4">Le Tue Migliori Offerte</h3>
+                            
+                            <div class="space-y-3">
+                                <div class="p-3 bg-green-50 rounded-lg border-l-4 border-green-500">
+                                    <div class="flex justify-between items-center">
+                                        <span class="font-medium text-slate-700">Edison Energia</span>
+                                        <span class="text-green-600 font-bold">-€380/anno</span>
+                                    </div>
+                                    <p class="text-sm text-slate-600">Offerta Luce Convenienza Plus</p>
+                                </div>
+                                
+                                <div class="p-3 bg-blue-50 rounded-lg border-l-4 border-blue-500">
+                                    <div class="flex justify-between items-center">
+                                        <span class="font-medium text-slate-700">Sorgenia</span>
+                                        <span class="text-blue-600 font-bold">-€340/anno</span>
+                                    </div>
+                                    <p class="text-sm text-slate-600">Next Energy Luce</p>
+                                </div>
+                                
+                                <div class="p-3 bg-purple-50 rounded-lg border-l-4 border-purple-500">
+                                    <div class="flex justify-between items-center">
+                                        <span class="font-medium text-slate-700">Illumia</span>
+                                        <span class="text-purple-600 font-bold">-€290/anno</span>
+                                    </div>
+                                    <p class="text-sm text-slate-600">Luce Relax</p>
+                                </div>
+                            </div>
+                            
+                            <div class="mt-4 p-3 bg-emerald-50 rounded-lg">
+                                <p class="text-sm text-emerald-700 font-medium text-center">
+                                    Risparmio medio: €337/anno
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Caso d'Uso Esempio -->
+    <section class="py-20 bg-gradient-to-b from-slate-50 to-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-slate-800 mb-4">
+                    Caso d'Uso: <span class="bg-clip-text text-transparent bg-gradient-to-r from-emerald-500 to-blue-500">Famiglia Rossi</span>
+                </h2>
+                <p class="text-lg text-slate-600 max-w-3xl mx-auto">
+                    Vediamo come BollettaSmart ha aiutato la famiglia Rossi di Milano a risparmiare €420 all'anno
+                </p>
+            </div>
+
+            <div class="max-w-5xl mx-auto">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    <!-- Bolletta Prima -->
+                    <div>
+                        <div class="bg-white rounded-2xl p-8 shadow-xl border border-slate-100">
+                            <div class="flex items-center gap-3 mb-6">
+                                <div class="w-12 h-12 bg-red-100 rounded-xl flex items-center justify-center">
+                                    <span class="text-red-600 text-xl">📄</span>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-bold text-slate-800">Bolletta ENEL Originale</h3>
+                                    <p class="text-slate-600">Marzo 2025</p>
+                                </div>
+                            </div>
+                            
+                            <div class="space-y-4">
+                                <div class="flex justify-between items-center p-3 bg-red-50 rounded-lg">
+                                    <span class="text-slate-700">Consumo Mensile</span>
+                                    <span class="font-bold text-slate-800">350 kWh</span>
+                                </div>
+                                <div class="flex justify-between items-center p-3 bg-red-50 rounded-lg">
+                                    <span class="text-slate-700">Costo Energia</span>
+                                    <span class="font-bold text-slate-800">€87,50</span>
+                                </div>
+                                <div class="flex justify-between items-center p-3 bg-red-50 rounded-lg">
+                                    <span class="text-slate-700">Spese Fisse</span>
+                                    <span class="font-bold text-slate-800">€28,40</span>
+                                </div>
+                                <div class="flex justify-between items-center p-4 bg-red-100 rounded-lg border-l-4 border-red-500">
+                                    <span class="font-bold text-slate-800">Totale Mensile</span>
+                                    <span class="text-red-600 font-bold text-xl">€142,80</span>
+                                </div>
+                                <div class="text-center p-3 bg-slate-100 rounded-lg">
+                                    <span class="text-slate-600 text-sm">Costo annuale stimato: €1.713,60</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Risultato BollettaSmart -->
+                    <div>
+                        <div class="bg-white rounded-2xl p-8 shadow-xl border border-emerald-200">
+                            <div class="flex items-center gap-3 mb-6">
+                                <div class="w-12 h-12 bg-emerald-100 rounded-xl flex items-center justify-center">
+                                    <span class="text-emerald-600 text-xl">⚡</span>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-bold text-slate-800">Miglior Offerta Trovata</h3>
+                                    <p class="text-emerald-600 font-medium">Edison Energia - Luce Flex</p>
+                                </div>
+                            </div>
+                            
+                            <div class="space-y-4">
+                                <div class="flex justify-between items-center p-3 bg-emerald-50 rounded-lg">
+                                    <span class="text-slate-700">Consumo Mensile</span>
+                                    <span class="font-bold text-slate-800">350 kWh</span>
+                                </div>
+                                <div class="flex justify-between items-center p-3 bg-emerald-50 rounded-lg">
+                                    <span class="text-slate-700">Costo Energia</span>
+                                    <span class="font-bold text-slate-800">€67,20</span>
+                                </div>
+                                <div class="flex justify-between items-center p-3 bg-emerald-50 rounded-lg">
+                                    <span class="text-slate-700">Spese Fisse</span>
+                                    <span class="font-bold text-slate-800">€20,60</span>
+                                </div>
+                                <div class="flex justify-between items-center p-4 bg-emerald-100 rounded-lg border-l-4 border-emerald-500">
+                                    <span class="font-bold text-slate-800">Totale Mensile</span>
+                                    <span class="text-emerald-600 font-bold text-xl">€107,80</span>
+                                </div>
+                                <div class="text-center p-3 bg-green-100 rounded-lg">
+                                    <div class="text-green-800 font-bold text-lg">Risparmio: €35/mese</div>
+                                    <div class="text-green-700 text-sm">€420 all'anno</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dettagli Analisi -->
+                <div class="mt-12 bg-blue-50 rounded-2xl p-8">
+                    <h4 class="text-xl font-bold text-slate-800 mb-6 text-center">Parametri Analizzati da BollettaSmart</h4>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <div class="bg-white rounded-lg p-4">
+                            <h5 class="font-semibold text-slate-800 mb-2">Dati Cliente</h5>
+                            <ul class="text-sm text-slate-600 space-y-1">
+                                <li>• Codice Cliente: 123456789</li>
+                                <li>• POD: IT001E12345678</li>
+                                <li>• Indirizzo Fornitura</li>
+                                <li>• Potenza Impegnata: 3 kW</li>
+                            </ul>
+                        </div>
+                        <div class="bg-white rounded-lg p-4">
+                            <h5 class="font-semibold text-slate-800 mb-2">Consumi</h5>
+                            <ul class="text-sm text-slate-600 space-y-1">
+                                <li>• F1: 120 kWh (€0,25/kWh)</li>
+                                <li>• F2: 130 kWh (€0,23/kWh)</li>
+                                <li>• F3: 100 kWh (€0,21/kWh)</li>
+                                <li>• Totale: 350 kWh</li>
+                            </ul>
+                        </div>
+                        <div class="bg-white rounded-lg p-4">
+                            <h5 class="font-semibold text-slate-800 mb-2">Costi</h5>
+                            <ul class="text-sm text-slate-600 space-y-1">
+                                <li>• Quota Fissa: €28,40</li>
+                                <li>• Trasporto: €15,20</li>
+                                <li>• Oneri Sistema: €12,80</li>
+                                <li>• Imposte: €8,90</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 bg-gradient-to-r from-emerald-600 to-blue-600 text-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-3xl mx-auto text-center">
+                <h2 class="text-3xl md:text-4xl font-bold mb-6">Il tuo turno per risparmiare!</h2>
+                <p class="text-lg opacity-90 mb-8">Come la famiglia Rossi, anche tu puoi risparmiare centinaia di euro all'anno. Inizia subito l'analisi della tua bolletta.</p>
+                <a href="/" class="inline-block px-8 py-3 bg-white text-emerald-600 font-semibold rounded-lg hover:shadow-lg transition-all">Analizza la Tua Bolletta</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 bg-slate-900 text-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center">
+                <div class="flex items-center justify-center gap-2 mb-4">
+                    <div class="w-8 h-8 bg-emerald-500 rounded-lg"></div>
+                    <span class="text-xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-emerald-400 to-blue-400">BollettaSmart</span>
+                </div>
+                <p class="text-slate-400 mb-4 max-w-2xl mx-auto">
+                    Il primo comparatore di bollette potenziato dall'intelligenza artificiale. 
+                    Confronta automaticamente tutte le offerte del mercato energetico italiano.
+                </p>
+                <div class="flex justify-center space-x-6 text-sm text-slate-400">
+                    <a href="/" class="hover:text-emerald-400 transition-colors">Home</a>
+                    <a href="/come-funziona" class="hover:text-emerald-400 transition-colors">Come Funziona</a>
+                    <a href="#" class="hover:text-emerald-400 transition-colors">Privacy Policy</a>
+                    <a href="#" class="hover:text-emerald-400 transition-colors">Contatti</a>
+                </div>
+                <p class="text-slate-500 text-sm mt-6">
+                    © 2025 BollettaSmart • Servizio gratuito per il confronto bollette
+                </p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
