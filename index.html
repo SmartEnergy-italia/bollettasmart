@@ -1,13 +1,677 @@
 <!DOCTYPE html>
 <html lang="it">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" href="/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>BollettaSmart</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BollettaSmart | Risparmia sulle bollette con l'intelligenza artificiale</title>
+    <meta name="description" content="Carica la tua bolletta, analizza i consumi e trova l'offerta più conveniente per te con l'AI.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/public/tailwind.css">
+    <style>
+        body { font-family: 'Outfit', sans-serif; }
+        .gradient-text {
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            background-image: linear-gradient(to right, #10b981, #3b82f6);
+        }
+        #drop-zone {
+            transition: all 0.3s ease;
+        }
+        #drop-zone.active {
+            border-color: #10b981;
+            background-color: #d1fae5;
+        }
+        
+        /* Smooth Gradient Button Animations */
+        .gradient-btn {
+            background: linear-gradient(-45deg, #10b981, #3b82f6, #06b6d4, #8b5cf6);
+            background-size: 400% 400%;
+            animation: gradientFlow 4s ease infinite;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .gradient-btn-primary {
+            background: linear-gradient(-45deg, #059669, #2563eb, #0891b2, #7c3aed);
+            background-size: 400% 400%;
+            animation: gradientFlow 3s ease infinite;
+        }
+        
+        .gradient-btn-secondary {
+            background: linear-gradient(-45deg, #3b82f6, #10b981, #06b6d4, #8b5cf6);
+            background-size: 400% 400%;
+            animation: gradientFlow 5s ease infinite;
+        }
+        
+        @keyframes gradientFlow {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+        
+        .gradient-btn:hover {
+            animation: gradientFlow 1.5s ease infinite;
+            transform: translateY(-2px);
+            box-shadow: 0 20px 40px rgba(16, 185, 129, 0.3);
+        }
+        
+        .gradient-btn-primary:hover {
+            animation: gradientFlow 1s ease infinite;
+            transform: translateY(-3px);
+            box-shadow: 0 25px 50px rgba(37, 99, 235, 0.4);
+        }
+        
+        .gradient-btn-secondary:hover {
+            animation: gradientFlow 2s ease infinite;
+            transform: translateY(-1px);
+            box-shadow: 0 15px 30px rgba(59, 130, 246, 0.25);
+        }
+        
+        /* Ripple effect for buttons */
+        .gradient-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+        
+        .gradient-btn:active::before {
+            width: 300px;
+            height: 300px;
+        }
+        
+        /* Pulse animation for primary actions */
+        .pulse-glow {
+            animation: pulseGlow 2s infinite;
+        }
+        
+        @keyframes pulseGlow {
+            0% {
+                box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 20px rgba(16, 185, 129, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+            }
+        }
+        
+        /* Smooth transition for all interactive elements */
+        .smooth-transition {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        /* Responsive Design Optimization for Gradient Buttons */
+        .gradient-btn, .gradient-btn-primary, .gradient-btn-secondary {
+            min-height: 48px; /* Touch-friendly minimum */
+            font-size: 16px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            text-align: center;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+        
+        /* Mobile optimizations */
+        @media (max-width: 640px) {
+            .gradient-btn, .gradient-btn-primary, .gradient-btn-secondary {
+                font-size: 14px;
+                min-height: 44px;
+                padding: 12px 16px;
+                width: 100%;
+                box-sizing: border-box;
+            }
+            
+            .gradient-btn:hover, .gradient-btn-primary:hover, .gradient-btn-secondary:hover {
+                transform: none; /* Disable hover animations on mobile for better performance */
+                animation: gradientFlow 2s ease infinite;
+            }
+            
+            /* Reduce animation complexity on mobile */
+            .pulse-glow {
+                animation: none;
+            }
+        }
+        
+        /* Tablet optimizations */
+        @media (min-width: 641px) and (max-width: 1024px) {
+            .gradient-btn, .gradient-btn-primary, .gradient-btn-secondary {
+                font-size: 15px;
+                min-height: 46px;
+                padding: 14px 20px;
+            }
+        }
+        
+        /* Desktop optimizations */
+        @media (min-width: 1025px) {
+            .gradient-btn, .gradient-btn-primary, .gradient-btn-secondary {
+                font-size: 16px;
+                min-height: 48px;
+                padding: 16px 24px;
+            }
+        }
+        
+        /* Prevent text selection on buttons */
+        .gradient-btn, .gradient-btn-primary, .gradient-btn-secondary {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        /* Better focus states for accessibility */
+        .gradient-btn:focus, .gradient-btn-primary:focus, .gradient-btn-secondary:focus {
+            outline: 2px solid #10b981;
+            outline-offset: 2px;
+        }
+        
+        /* Container responsive adjustments */
+        .responsive-container {
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        
+        @media (min-width: 640px) {
+            .responsive-container {
+                padding: 0 2rem;
+            }
+        }
+        
+        @media (min-width: 1024px) {
+            .responsive-container {
+                padding: 0 3rem;
+                max-width: 1200px;
+            }
+        }
+    </style>
+</head>
+
+<body class="font-outfit bg-white text-slate-800">
+    <!-- Header con Navbar -->
+    <header class="py-4 bg-white shadow-sm">
+        <div class="container mx-auto px-4">
+            <div class="flex items-center justify-between">
+                <a href="/" class="flex items-center gap-2">
+                    <span class="text-2xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-emerald-500 to-blue-500">BollettaSmart</span>
+                </a>
+                
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="/" class="font-medium text-emerald-600 transition-colors">Home</a>
+                    <a href="/come-funziona" class="font-medium hover:text-emerald-600 transition-colors">Come Funziona</a>
+                    <a href="/login.html" class="px-6 py-2.5 bg-gradient-to-r from-emerald-500 to-blue-500 text-white font-medium rounded-lg hover:shadow-lg transition-all">Area Riservata</a>
+                </div>
+                
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-button" class="md:hidden text-slate-800">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+            </div>
+            
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="md:hidden hidden mt-4 rounded-lg shadow-lg bg-white p-4">
+                <div class="flex flex-col space-y-3">
+                    <a href="/" class="font-medium text-emerald-600 p-2">Home</a>
+                    <a href="/come-funziona" class="font-medium hover:text-emerald-600 p-2">Come Funziona</a>
+                    <a href="/login.html" class="px-6 py-2.5 bg-gradient-to-r from-emerald-500 to-blue-500 text-white font-medium rounded-lg hover:shadow-lg transition-all text-center mt-2">Area Riservata</a>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Hero Section -->
+    <section class="relative py-20 bg-gradient-to-br from-emerald-50 to-blue-50">
+        <div class="container mx-auto px-4">
+            <div class="max-w-3xl mx-auto text-center">
+                <h1 class="text-4xl md:text-5xl font-bold mb-6">
+                    Carica la tua bolletta, analizza i consumi e trova l'offerta <span class="text-emerald-600">più conveniente</span> per te.
+                </h1>
+                <div class="mt-12">
+                    <a href="#upload-section" class="w-full md:w-auto px-8 py-3 bg-gradient-to-r from-emerald-500 to-blue-500 text-white font-semibold rounded-lg hover:shadow-lg transition-all inline-block text-center">
+                        INIZIA ORA
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Come Funziona Section -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold mb-4">Come funziona <span class="text-emerald-600">BollettaSmart</span></h2>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                <!-- Step 1 -->
+                <div class="bg-white rounded-xl p-8 shadow-md hover:shadow-lg transition-shadow border border-slate-100">
+                    <div class="flex flex-col items-center text-center">
+                        <div class="w-20 h-20 bg-emerald-500 rounded-full flex items-center justify-center mb-6">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4 text-slate-800">Carica la tua bolletta</h3>
+                        <p class="text-slate-600 leading-relaxed">Carica la bolletta in formato PDF o immagine. Il nostro sistema analizzerà automaticamente tutti i dati.</p>
+                    </div>
+                </div>
+                
+                <!-- Step 2 -->
+                <div class="bg-white rounded-xl p-8 shadow-md hover:shadow-lg transition-shadow border border-slate-100">
+                    <div class="flex flex-col items-center text-center">
+                        <div class="w-20 h-20 bg-blue-500 rounded-full flex items-center justify-center mb-6">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4 text-slate-800">Analizza i consumi</h3>
+                        <p class="text-slate-600 leading-relaxed">Visualizza i tuoi consumi per fasce orarie e confrontali con i periodi precedenti per ottimizzare le tue abitudini.</p>
+                    </div>
+                </div>
+                
+                <!-- Step 3 -->
+                <div class="bg-white rounded-xl p-8 shadow-md hover:shadow-lg transition-shadow border border-slate-100">
+                    <div class="flex flex-col items-center text-center">
+                        <div class="w-20 h-20 bg-gradient-to-r from-emerald-500 to-blue-500 rounded-full flex items-center justify-center mb-6">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4 text-slate-800">Trova l'offerta migliore</h3>
+                        <p class="text-slate-600 leading-relaxed">Confronta le offerte dei principali fornitori e scopri quanto puoi risparmiare cambiando tariffa o gestore.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Testimonials Section -->
+    <section class="py-20 bg-slate-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold mb-4">I nostri utenti confermano il risparmio</h2>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                <!-- Testimonial 1 -->
+                <div class="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-all">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-emerald-200 rounded-full flex items-center justify-center text-emerald-700 font-bold mr-3">
+                            MR
+                        </div>
+                        <div>
+                            <h4 class="font-bold">Marco Rossi</h4>
+                            <p class="text-sm text-slate-500">Milano</p>
+                        </div>
+                    </div>
+                    <p class="text-slate-700">"Ho risparmiato oltre 300€ all'anno sulla bolletta del gas grazie al confronto con BollettaSmart. Servizio eccellente!"</p>
+                </div>
+                
+                <!-- Testimonial 2 -->
+                <div class="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-all">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-blue-200 rounded-full flex items-center justify-center text-blue-700 font-bold mr-3">
+                            LV
+                        </div>
+                        <div>
+                            <h4 class="font-bold">Laura Verdi</h4>
+                            <p class="text-sm text-slate-500">Roma</p>
+                        </div>
+                    </div>
+                    <p class="text-slate-700">"L'analisi dei consumi mi ha aiutato a capire quando consumo di più e a modificare le mie abitudini. Ora risparmio e inquino meno!"</p>
+                </div>
+                
+                <!-- Testimonial 3 -->
+                <div class="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-all">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-purple-200 rounded-full flex items-center justify-center text-purple-700 font-bold mr-3">
+                            GB
+                        </div>
+                        <div>
+                            <h4 class="font-bold">Giovanni Bianchi</h4>
+                            <p class="text-sm text-slate-500">Torino</p>
+                        </div>
+                    </div>
+                    <p class="text-slate-700">"Interfaccia semplice e intuitiva. Ho caricato la mia bolletta e in pochi minuti ho trovato un'offerta che mi fa risparmiare il 22%."</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Upload Section -->
+    <section id="upload-section" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-3xl mx-auto">
+                <div class="text-center mb-10">
+                    <h2 class="text-3xl font-bold mb-4">Inizia subito a risparmiare</h2>
+                    <p class="text-lg text-slate-600 mb-8">Carica la tua bolletta e scopri in pochi minuti quanto puoi risparmiare.</p>
+                    
+                    <div class="flex flex-wrap justify-center gap-4 mb-10">
+                        <div class="flex items-center bg-emerald-50 px-4 py-2 rounded-full text-emerald-700">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                            </svg>
+                            Analisi istantanea dei consumi
+                        </div>
+                        <div class="flex items-center bg-blue-50 px-4 py-2 rounded-full text-blue-700">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                            </svg>
+                            Confronto con le migliori offerte
+                        </div>
+                        <div class="flex items-center bg-purple-50 px-4 py-2 rounded-full text-purple-700">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                            </svg>
+                            Procedura guidata per il cambio fornitore
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Upload Form -->
+                <div class="bg-white rounded-xl shadow-lg p-8 border border-slate-100">
+                    <h3 class="text-2xl font-bold mb-6 text-center">Carica la tua bolletta</h3>
+                    
+                    <form id="upload-form" class="mb-6">
+                        <div id="drop-zone" class="border-2 border-dashed border-slate-300 rounded-lg p-10 text-center cursor-pointer hover:border-emerald-500 transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 mx-auto text-slate-400 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+                            </svg>
+                            <p class="text-lg mb-2">Trascina qui il file o clicca per selezionarlo</p>
+                            <p class="text-sm text-slate-500 mb-4">Formati supportati: PDF, JPG, PNG</p>
+                            <input type="file" id="file-input" name="file" class="hidden" accept=".pdf,.jpg,.jpeg,.png">
+                            <p class="text-sm text-emerald-600 hidden" id="file-name-display"></p>
+                        </div>
+                        
+                        <div class="mt-6 flex justify-center">
+                            <button type="submit" class="gradient-btn-primary w-full md:w-auto px-8 py-3 text-white font-bold rounded-lg smooth-transition pulse-glow">
+                                ⚡ Analizza Bolletta
+                            </button>
+                        </div>
+                    </form>
+                    
+                    <div class="text-center text-slate-500 text-sm">
+                        <p>oppure</p>
+                        <button id="demo-btn" class="gradient-btn-secondary mt-2 px-6 py-2 text-white font-semibold rounded-lg smooth-transition">🔍 Prova con una bolletta di esempio</button>
+                    </div>
+                    
+                    <!-- Loading States -->
+                    <div id="upload-progress" class="hidden mt-6">
+                        <div class="mb-2 flex justify-between text-sm">
+                            <span class="text-slate-600">Caricamento documento...</span>
+                            <span class="text-slate-600" id="progress-percentage">0%</span>
+                        </div>
+                        <div class="w-full bg-slate-200 rounded-full h-2">
+                            <div id="progress-bar" class="bg-emerald-500 h-2 rounded-full transition-all" style="width: 0%"></div>
+                        </div>
+                    </div>
+                    
+                    <div id="upload-success" class="hidden mt-6 p-4 bg-emerald-50 border border-emerald-200 rounded-lg">
+                        <div class="flex items-center">
+                            <svg class="w-5 h-5 text-emerald-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                            </svg>
+                            <div>
+                                <p class="font-medium text-emerald-800">Caricamento completato!</p>
+                                <p class="text-sm text-emerald-700">Ora puoi procedere all'analisi AI della tua bolletta</p>
+                            </div>
+                        </div>
+                        <button id="start-analysis-btn" class="gradient-btn mt-3 w-full px-4 py-2 text-white font-bold rounded-lg smooth-transition">
+                            🚀 Avvia Analisi AI
+                        </button>
+                    </div>
+                    
+                    <div id="loading-analysis" class="hidden mt-6 text-center">
+                        <div class="inline-block animate-spin rounded-full h-8 w-8 border-4 border-emerald-500 border-t-transparent"></div>
+                        <p class="mt-2 text-slate-600">Analisi AI in corso...</p>
+                        <p class="text-sm text-slate-500">Estrazione di 38 campi dalla bolletta</p>
+                    </div>
+                </div>
+                
+                <!-- Results Container -->
+                <div id="result-container" class="mt-8"></div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="py-12 bg-slate-800 text-white">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between gap-8">
+                <div class="md:w-1/3">
+                    <a href="/" class="flex items-center gap-2 mb-4">
+                        <span class="text-xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-emerald-400 to-blue-400">BollettaSmart</span>
+                    </a>
+                    <p class="text-slate-400 mb-4">Analizza le tue bollette con l'AI e risparmia trovando le offerte energetiche migliori sul mercato italiano.</p>
+                </div>
+                
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-8">
+                    <div>
+                        <h3 class="text-lg font-semibold mb-4">Pagine</h3>
+                        <ul class="space-y-2">
+                            <li><a href="/" class="text-slate-400 hover:text-white transition-colors">Home</a></li>
+                            <li><a href="/come-funziona" class="text-slate-400 hover:text-white transition-colors">Come Funziona</a></li>
+                            <li><a href="/login.html" class="text-slate-400 hover:text-white transition-colors">Area Riservata</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-lg font-semibold mb-4">Contatti</h3>
+                        <ul class="space-y-2">
+                            <li><a href="#" class="text-slate-400 hover:text-white transition-colors">Supporto</a></li>
+                            <li><a href="#" class="text-slate-400 hover:text-white transition-colors">Email</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-lg font-semibold mb-4">Legale</h3>
+                        <ul class="space-y-2">
+                            <li><a href="#" class="text-slate-400 hover:text-white transition-colors">Privacy Policy</a></li>
+                            <li><a href="#" class="text-slate-400 hover:text-white transition-colors">Termini di Servizio</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-12 pt-8 border-t border-slate-700 text-center text-slate-400">
+                <p>&copy; 2025 BollettaSmart. Tutti i diritti riservati.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile menu toggle
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            if (mobileMenuButton && mobileMenu) {
+                mobileMenuButton.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                });
+            }
+            
+            // Upload functionality
+            const fileInput = document.getElementById('file-input');
+            const dropZone = document.getElementById('drop-zone');
+            const uploadForm = document.getElementById('upload-form');
+            const loadingIndicator = document.getElementById('loading-indicator');
+            const resultContainer = document.getElementById('result-container');
+            const fileNameDisplay = document.getElementById('file-name-display');
+            const demoBtn = document.getElementById('demo-btn');
+
+            // Click to upload
+            dropZone.addEventListener('click', () => {
+                fileInput.click();
+            });
+
+            // Drag and drop
+            ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+                dropZone.addEventListener(eventName, preventDefaults, false);
+            });
+
+            function preventDefaults(e) {
+                e.preventDefault();
+                e.stopPropagation();
+            }
+
+            ['dragenter', 'dragover'].forEach(eventName => {
+                dropZone.addEventListener(eventName, highlight, false);
+            });
+
+            ['dragleave', 'drop'].forEach(eventName => {
+                dropZone.addEventListener(eventName, unhighlight, false);
+            });
+
+            function highlight(e) {
+                dropZone.classList.add('active');
+            }
+
+            function unhighlight(e) {
+                dropZone.classList.remove('active');
+            }
+
+            dropZone.addEventListener('drop', handleDrop, false);
+
+            function handleDrop(e) {
+                const dt = e.dataTransfer;
+                const files = dt.files;
+                fileInput.files = files;
+                handleFiles(files);
+            }
+
+            fileInput.addEventListener('change', (e) => {
+                handleFiles(e.target.files);
+            });
+
+            function handleFiles(files) {
+                if (files.length > 0) {
+                    const file = files[0];
+                    fileNameDisplay.textContent = file.name;
+                    fileNameDisplay.classList.remove('hidden');
+                }
+            }
+
+            // Form submission
+            uploadForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                
+                const file = fileInput.files[0];
+                if (!file) {
+                    alert('Seleziona prima un file');
+                    return;
+                }
+
+                const formData = new FormData();
+                formData.append('bill', file);
+
+                loadingIndicator.classList.remove('hidden');
+
+                fetch('/api/analyze-bill', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => response.json())
+                .then(data => {
+                    loadingIndicator.classList.add('hidden');
+                    displayResults(data);
+                })
+                .catch(error => {
+                    loadingIndicator.classList.add('hidden');
+                    console.error('Errore:', error);
+                    alert('Errore durante l\'analisi. Riprova.');
+                });
+            });
+
+            // Demo functionality
+            if (demoBtn) {
+                demoBtn.addEventListener('click', () => {
+                    loadingIndicator.classList.remove('hidden');
+                    
+                    setTimeout(() => {
+                        loadingIndicator.classList.add('hidden');
+                        displayDemoResults();
+                    }, 2000);
+                });
+            }
+
+            function displayResults(data) {
+                resultContainer.innerHTML = `
+                    <div class="bg-white rounded-xl shadow-lg p-6 mb-8">
+                        <h3 class="text-xl font-bold text-slate-800 mb-4">Risultati Analisi</h3>
+                        <pre class="bg-slate-50 p-4 rounded-lg text-sm overflow-x-auto">${JSON.stringify(data, null, 2)}</pre>
+                    </div>
+                `;
+            }
+
+            function displayDemoResults() {
+                resultContainer.innerHTML = `
+                    <div class="bg-white rounded-xl shadow-lg p-6 mb-8">
+                        <div class="flex items-center justify-between mb-6">
+                            <h3 class="text-xl font-bold text-slate-800">Risultati Estrazione</h3>
+                            <span class="px-3 py-1 rounded-full text-sm font-medium bg-emerald-100 text-emerald-800">
+                                Affidabilità: 95%
+                            </span>
+                        </div>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                            <div class="p-4 rounded-lg bg-slate-50">
+                                <p class="text-sm font-medium text-slate-500 mb-1">Fornitore</p>
+                                <p class="font-semibold">Enel Energia</p>
+                            </div>
+                            
+                            <div class="p-4 rounded-lg bg-slate-50">
+                                <p class="text-sm font-medium text-slate-500 mb-1">Consumo</p>
+                                <p class="font-semibold">320 kWh</p>
+                            </div>
+                            
+                            <div class="p-4 rounded-lg bg-slate-50">
+                                <p class="text-sm font-medium text-slate-500 mb-1">Importo Totale</p>
+                                <p class="font-semibold">€ 87.45</p>
+                            </div>
+                            
+                            <div class="p-4 rounded-lg bg-slate-50">
+                                <p class="text-sm font-medium text-slate-500 mb-1">Periodo</p>
+                                <p class="font-semibold">01/03/2025 - 31/03/2025</p>
+                            </div>
+                        </div>
+                        
+                        <div class="p-4 bg-emerald-50 rounded-lg border border-emerald-200">
+                            <h4 class="font-semibold text-emerald-800 mb-2">Potenziale Risparmio</h4>
+                            <p class="text-emerald-700">Abbiamo trovato offerte che potrebbero farti risparmiare fino a €25/mese</p>
+                        </div>
+                    </div>
+                `;
+            }
+        });
+    </script>
+    
+    <!-- Bill analysis visualization -->
+    <script src="/public/js/billAnalysis.js"></script>
+    
+    <!-- Upload functionality -->
+    <script src="/public/js/upload.js"></script>
+</body>
 </html>
